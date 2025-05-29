@@ -1,0 +1,16 @@
+{
+  "files_info": [
+    {
+      "filename": "slingo_data.txt",
+      "file_path": "uploads\\slingo_data.txt",
+      "chunks_count": 112,
+      "file_size": 82873,
+      "file_modified": "2025-05-09T15:48:06.972202",
+      "loaded_time": "2025-05-29T18:07:41.919132"
+    }
+  ],
+  "files_hash": "slingo_data.txt:82873:1746785886.972202",
+  "created_time": "2025-05-29T18:07:47.521468",
+  "total_files": 1,
+  "total_chunks": 112
+}
