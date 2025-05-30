@@ -1,6 +1,2 @@
 flask
-langchain
-langchain-community
-faiss-cpu
-huggingface-hub
-sentence-transformers
+qdrant-client
