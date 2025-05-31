@@ -1,5 +1,5 @@
 
---- Content from: https://slingo.ai/ ---
+Content from: https://slingo.ai/ ---
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
 Analyzing customer service interactions to identify communication gaps, improve query resolution, and enhance the overall customer experience.
 Leveraging predictive analytics to prioritize high-potential customers, increasing engagement and conversion rates effectively.
@@ -8,13 +8,7 @@ Providing agents with AI-powered insights and contextual recommendations during 
 Analyzing customer feedback to assess agent performance, identify training needs, and improve service quality and customer satisfaction.
 AI-powered multilingual virtual assistants offering real-time, context-aware, and sentiment-sensitive support to deliver seamless customer service.
 Using AI to analyze debt recovery interactions, predict repayment likelihood, and optimize strategies for efficient and effective collections.
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
+
 Lingo automatically ensures adherence to compliance standards and seamlessly aligns with new compliance or quality processes.
 On-premise deployment
 True vernacular solution
@@ -29,11 +23,9 @@ Automates call analysis for compliance and improved service.
 Better post-sales support and feedback analytics.
 Enhances customer support with real-time insights.
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
 
---- Content from: https://slingo.ai/features/ ---
+
+Content from: https://slingo.ai/features/ ---
 Lingo is a versatile conversational analytics platform that empowers businesses to analyze data effortlessly. With customizable KPIs, advanced features like sentiment analysis, call scoring, transcriptions, and intuitive dashboards, Lingo delivers actionable insights to optimize performance and drive data-driven decisions—all tailored to your unique needs.
 Multilingual capability with various international and Indian languages, addressing their unique nuances.
 Unlike traditional solutions, Lingo provides a comprehensive and flexible approach to data integration, setting itself apart from existing alternatives.
@@ -50,9 +42,7 @@ Minimal recurring licensing, maintenance, and support costs to ensure efficient 
 Lingo lets businesses tailor KPIs to measure and optimize performance based on specific goals.
 Lingo captures the true essence of conversations by analyzing their context rather than relying solely on direct translations.
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/solution-by-use-cases/ ---
 We harness the power of AI and Large Language Models (LLM) to deliver cutting-edge solutions in Automatic Speech Recognition (ASR), Natural Language Processing (NLP), and Computer Vision. Our advanced technologies are poised to surpass even the leading global solutions
@@ -99,9 +89,7 @@ Proactive adjustments to customer experience based on feedback trends.
 Keep your data safe while deploying our proprietary solution on any desired premises. Our solution is compliant with the international standard norms.​
 Deploy our solution to any cloud environment that makes your process seamless.​
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/stt-speech-to-text/ ---
 Lingo’s Speech to Text (STT) service transcribes spoken language into text with high 
@@ -127,9 +115,7 @@ Create accurate, real-time transcripts for legal purposes,
 court hearings, or compliance needs.
 Here is the list of languages that are supported by SandLogic’s Lingo platform for “Speech to Text” and the respective accuracy for the same.
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/tts-text-to-speech/ ---
 Lingo’s Text to Speech (TTS) service converts written text into lifelike spoken audio, 
@@ -149,9 +135,7 @@ natural, responsive voice options that keep customers engaged.
 Convert course material into spoken content to improve accessibility and engagement for learners.
 Add a voice to your website or app content, making blogs, articles, and news more accessible for users on the go.
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/halumon-responsible-ai/ ---
 At SandLogic, we are proud to present HaluMon, our innovative tool designed to monitor and control hallucinations in AI-generated responses. Inspired by the legendary Hanuman, HaluMon embodies strength and precision, ensuring that the outputs of our AI models are accurate, reliable, and trustworthy
@@ -177,9 +161,7 @@ to automatically triage issues reported by customers, streamlining the support
 process and improving response times.
 Implemented for an outbound call center, this model scores buyer propensity with a classification accuracy of 98%, aiding the sales team in effectively targeting high-potential leads.
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/shakti-llm/ ---
 The Transformer architecture revolutionized Natural Language Processing (NLP) by
@@ -233,9 +215,7 @@ Shakti is designed for scalability, efficiency, and adaptability, making it suit
  
 3. Compliance Standards: Responsible deployment, especially in sensitive sectors.
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/lexicons/ ---
 SandLogic Lexicons, the go-to repository for cutting-edge Large Language Models (LLMs) optimized for deployment on various hardware platforms. Our collection bridges the gap between the latest AI research and practical applications, making advanced natural language processing capabilities accessible to all.
@@ -247,9 +227,7 @@ Each model inSandLogicLexicons is thoroughly evaluated against industry-standard
 These benchmarks provide a thorough evaluation of our models, covering general knowledge, reasoning, coding skills, and specialized medical understanding.
 Our repository continues to expand, providing a growing selection of optimized models for diverse applications and hardware platforms.
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/benchmarks/ ---
 Speech recognition uses AI to transcribe human speech into text for a wide range of use cases, including voice assistants, sentiment analysis and more.
@@ -267,15 +245,11 @@ SandLogic is 80% less expensive compared to other best Speech-to-Text/ASR softwa
 SandLogic offers most reliable on-premise and edge deployment support. Latency: SandLogic’s offers <0.3 seconds Letency to ensure a smooth and seamless experience for users.
 SandLogic speech-to-text platform LINGO puts the security of Information at the forefront. Information security initiative has been designed using industry best practices (such as HIPAA, VAPT, GDPR).
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/blog/ ---
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/contact-info/ ---
 Lets Reach Future Together!
@@ -285,9 +259,7 @@ We are excited to hear from you. Just send us a note below and we’ll be in tou
 sales@sandlogic.com
 We are excited to hear from you. Just send us a note below and we’ll be in touch shortly.
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/privacy-policy/ ---
 1st January, 2023
@@ -308,9 +280,7 @@ A cookie is a string of Information that a website stores on a visitor’s compu
 Although most changes are likely to be minor, we may change our Privacy Policy from time to time, and at our sole discretion. We encourage our users and website visitors to frequently check this page for any changes to its Privacy Policy. If you have a TXTR or ingo account, you might also receive an alert Informing you of these changes. Your continued use of this site after any change in this Privacy Policy will constitute your acceptance of such change.
 If you have any questions or concerns about this Privacy Policy, please contact our Privacy tearn at info@sandlogic.com
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/terms-of-use/ ---
 1st January, 2023
@@ -400,9 +370,7 @@ info@sandlogic.com
 1. These Terms do not create any partnership or principal-agent relationship between the Portles.
 2. The illegality, invalidity or unenforceability of any of these Terme shall not affect the legality, validity or enforceability of the other provisions hereof.
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai#certificate ---
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
@@ -413,13 +381,7 @@ Providing agents with AI-powered insights and contextual recommendations during 
 Analyzing customer feedback to assess agent performance, identify training needs, and improve service quality and customer satisfaction.
 AI-powered multilingual virtual assistants offering real-time, context-aware, and sentiment-sensitive support to deliver seamless customer service.
 Using AI to analyze debt recovery interactions, predict repayment likelihood, and optimize strategies for efficient and effective collections.
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
+
 Lingo automatically ensures adherence to compliance standards and seamlessly aligns with new compliance or quality processes.
 On-premise deployment
 True vernacular solution
@@ -434,9 +396,7 @@ Automates call analysis for compliance and improved service.
 Better post-sales support and feedback analytics.
 Enhances customer support with real-time insights.
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/#video1 ---
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
@@ -447,13 +407,7 @@ Providing agents with AI-powered insights and contextual recommendations during 
 Analyzing customer feedback to assess agent performance, identify training needs, and improve service quality and customer satisfaction.
 AI-powered multilingual virtual assistants offering real-time, context-aware, and sentiment-sensitive support to deliver seamless customer service.
 Using AI to analyze debt recovery interactions, predict repayment likelihood, and optimize strategies for efficient and effective collections.
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
+
 Lingo automatically ensures adherence to compliance standards and seamlessly aligns with new compliance or quality processes.
 On-premise deployment
 True vernacular solution
@@ -468,44 +422,32 @@ Automates call analysis for compliance and improved service.
 Better post-sales support and feedback analytics.
 Enhances customer support with real-time insights.
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/real-time-agent-assist-for-enhanced-contact-center-operations/ ---
 The real-time agent assist solution using Lingo Forge. Lingo Forge processed customer queries and provided agents with:
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/enhancing-sales-efficiency-with-lingo-call-analytics/ ---
 SandLogic implemented an LLM-based solution LINGO which can dospeech & speakerrecognition, large data analysis using SLM/LLM, & enabled withmultilingual ASR(HIndi, English, Marathi, Kannada, Telugu, etc…)
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/sandlogic-lingo-now-supports-intels-openvino/ ---
 LINGO is a revolutionary Contact Center AI and LLM studio that combines the power of three distinct features: Multilingual Speech Recognition, conversational analytics based on NLP, and LLMs for generating AI-powered chat, image, and email responses to user prompts. With its exceptional accuracy, LINGO is at least 20% more robust and precise than most Speech to Text tools in the market, ensuring more trustworthy insights and informed product decisions. This tool is a game-changer in digital transformation space.
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/speech-emotion-recognition/ ---
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/post-call-analytics-for-consistent-support/ ---
 Ensure consistent and high-quality customer support across all communication channels by analyzing agent performance and customer satisfaction by providing actionable feedback.
 Implement Lingo Forge for post-call analytics to audit 100% of agent conversations across chat, email, and voice calls. The system evaluates performance metrics such as response times, accuracy, and protocol adherence. Agents receive automated AI-driven feedback and CSAT scores to identify areas for improvement
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/2025/01/ ---
 SOLUTION
@@ -545,9 +487,6 @@ Objective
 					Solution				
 		Leverage Lingo to conduct
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
 
 --- Content from: https://slingo.ai/category/knowledge/ ---
 SOLUTION
@@ -573,23 +512,17 @@ Objective
 					Solution				
 		Leverage Lingo to conduct
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/real-time-agent-assist-for-enhanced-contact-center-operations/#respond ---
 The real-time agent assist solution using Lingo Forge. Lingo Forge processed customer queries and provided agents with:
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/enhancing-sales-efficiency-with-lingo-call-analytics/#respond ---
 SandLogic implemented an LLM-based solution LINGO which can dospeech & speakerrecognition, large data analysis using SLM/LLM, & enabled withmultilingual ASR(HIndi, English, Marathi, Kannada, Telugu, etc…)
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/2024/11/ ---
 INTEL AND SANDLOGIC TECHNOLOGIES PARTNER TO OPTIMIZE OUR LINGO SPEECH ANALYTICS SOLUTION ON INTEL 4TH GEN XEON PROCESSOR WITH OPENVINO.				
@@ -597,22 +530,16 @@ INTEL AND SANDLOGIC TECHNOLOGIES PARTNER TO OPTIMIZE OUR LINGO SPEECH ANALYTICS 
 Customer who is into automotive component manufacturing wanted to build a multi-modal distress recognition system for passenger transportation industry.				
 		When a
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/sandlogic-lingo-now-supports-intels-openvino/#respond ---
 LINGO is a revolutionary Contact Center AI and LLM studio that combines the power of three distinct features: Multilingual Speech Recognition, conversational analytics based on NLP, and LLMs for generating AI-powered chat, image, and email responses to user prompts. With its exceptional accuracy, LINGO is at least 20% more robust and precise than most Speech to Text tools in the market, ensuring more trustworthy insights and informed product decisions. This tool is a game-changer in digital transformation space.
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/speech-emotion-recognition/#respond ---
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/2024/10/ ---
 Objective				
@@ -626,27 +553,22 @@ Objective
 					Solution				
 		Leverage Lingo to conduct
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
 
 --- Content from: https://slingo.ai/real-time-agent-assist-to-improve-booking-count/ ---
 Increase booking conversion rates and improve customer satisfaction by providing real-time support and guidance to call center agents.
 Deploy Lingo Forge with real-time conversation tracking and agent assist capabilities. The system monitors live calls, reducing hold times and improving first-call resolution. Auto-generated prompts guide agents through complex interactions, helping them handle objections, provide empathetic responses, and close deals faster.
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
 
---- Content from: https://slingo.ai/emotion-and-behavior-analysis-for-improved-cx/ ---
+
+--- Content from:emotion-and-behavior-analysis-for-improved-cx/ ---
 Enhance customer retention and booking rates by analyzing and responding to the emotional dynamics of customer-agent interactions
 Leverage Lingo to conduct emotion and behavior analysis during customer interactions. The system tracks sentiments, identifies successful behaviors, and recommends best practices to agents. This empowers agents to replicate winning strategies, improving both customer retention and booking success
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
 Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
 
---- Content from: https://slingo.ai/#elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjExMDg4IiwidG9nZ2xlIjpmYWxzZX0%3D ---
+
+--- Content from:elementor-action%3Aaction%3Dpopup%3Aopen%26settings%3DeyJpZCI6IjExMDg4IiwidG9nZ2xlIjpmYWxzZX0%3D ---
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
 Analyzing customer service interactions to identify communication gaps, improve query resolution, and enhance the overall customer experience.
 Leveraging predictive analytics to prioritize high-potential customers, increasing engagement and conversion rates effectively.
@@ -655,13 +577,7 @@ Providing agents with AI-powered insights and contextual recommendations during 
 Analyzing customer feedback to assess agent performance, identify training needs, and improve service quality and customer satisfaction.
 AI-powered multilingual virtual assistants offering real-time, context-aware, and sentiment-sensitive support to deliver seamless customer service.
 Using AI to analyze debt recovery interactions, predict repayment likelihood, and optimize strategies for efficient and effective collections.
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
+
 Lingo automatically ensures adherence to compliance standards and seamlessly aligns with new compliance or quality processes.
 On-premise deployment
 True vernacular solution
@@ -676,11 +592,9 @@ Automates call analysis for compliance and improved service.
 Better post-sales support and feedback analytics.
 Enhances customer support with real-time insights.
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
 
---- Content from: https://slingo.ai/#servicecall ---
+
+--- Content from: https:servicecall ---
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
 Analyzing customer service interactions to identify communication gaps, improve query resolution, and enhance the overall customer experience.
 Leveraging predictive analytics to prioritize high-potential customers, increasing engagement and conversion rates effectively.
@@ -689,13 +603,8 @@ Providing agents with AI-powered insights and contextual recommendations during 
 Analyzing customer feedback to assess agent performance, identify training needs, and improve service quality and customer satisfaction.
 AI-powered multilingual virtual assistants offering real-time, context-aware, and sentiment-sensitive support to deliver seamless customer service.
 Using AI to analyze debt recovery interactions, predict repayment likelihood, and optimize strategies for efficient and effective collections.
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
+
+
 Lingo automatically ensures adherence to compliance standards and seamlessly aligns with new compliance or quality processes.
 On-premise deployment
 True vernacular solution
@@ -710,11 +619,9 @@ Automates call analysis for compliance and improved service.
 Better post-sales support and feedback analytics.
 Enhances customer support with real-time insights.
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
 
---- Content from: https://slingo.ai/#salescall ---
+
+--- Content from: https:salescall ---
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
 Analyzing customer service interactions to identify communication gaps, improve query resolution, and enhance the overall customer experience.
 Leveraging predictive analytics to prioritize high-potential customers, increasing engagement and conversion rates effectively.
@@ -723,13 +630,7 @@ Providing agents with AI-powered insights and contextual recommendations during 
 Analyzing customer feedback to assess agent performance, identify training needs, and improve service quality and customer satisfaction.
 AI-powered multilingual virtual assistants offering real-time, context-aware, and sentiment-sensitive support to deliver seamless customer service.
 Using AI to analyze debt recovery interactions, predict repayment likelihood, and optimize strategies for efficient and effective collections.
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
+
 Lingo automatically ensures adherence to compliance standards and seamlessly aligns with new compliance or quality processes.
 On-premise deployment
 True vernacular solution
@@ -744,11 +645,9 @@ Automates call analysis for compliance and improved service.
 Better post-sales support and feedback analytics.
 Enhances customer support with real-time insights.
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
 
---- Content from: https://slingo.ai/#autoqa ---
+
+--- Content from:autoqa ---
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
 Analyzing customer service interactions to identify communication gaps, improve query resolution, and enhance the overall customer experience.
 Leveraging predictive analytics to prioritize high-potential customers, increasing engagement and conversion rates effectively.
@@ -757,13 +656,7 @@ Providing agents with AI-powered insights and contextual recommendations during 
 Analyzing customer feedback to assess agent performance, identify training needs, and improve service quality and customer satisfaction.
 AI-powered multilingual virtual assistants offering real-time, context-aware, and sentiment-sensitive support to deliver seamless customer service.
 Using AI to analyze debt recovery interactions, predict repayment likelihood, and optimize strategies for efficient and effective collections.
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
+
 Lingo automatically ensures adherence to compliance standards and seamlessly aligns with new compliance or quality processes.
 On-premise deployment
 True vernacular solution
@@ -778,11 +671,9 @@ Automates call analysis for compliance and improved service.
 Better post-sales support and feedback analytics.
 Enhances customer support with real-time insights.
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
 
---- Content from: https://slingo.ai/#realtime ---
+
+--- Content from:realtime ---
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
 Analyzing customer service interactions to identify communication gaps, improve query resolution, and enhance the overall customer experience.
 Leveraging predictive analytics to prioritize high-potential customers, increasing engagement and conversion rates effectively.
@@ -791,13 +682,7 @@ Providing agents with AI-powered insights and contextual recommendations during 
 Analyzing customer feedback to assess agent performance, identify training needs, and improve service quality and customer satisfaction.
 AI-powered multilingual virtual assistants offering real-time, context-aware, and sentiment-sensitive support to deliver seamless customer service.
 Using AI to analyze debt recovery interactions, predict repayment likelihood, and optimize strategies for efficient and effective collections.
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
+
 Lingo automatically ensures adherence to compliance standards and seamlessly aligns with new compliance or quality processes.
 On-premise deployment
 True vernacular solution
@@ -812,11 +697,9 @@ Automates call analysis for compliance and improved service.
 Better post-sales support and feedback analytics.
 Enhances customer support with real-time insights.
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
 
---- Content from: https://slingo.ai/#feedback ---
+
+--- Content from:feedback ---
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
 Analyzing customer service interactions to identify communication gaps, improve query resolution, and enhance the overall customer experience.
 Leveraging predictive analytics to prioritize high-potential customers, increasing engagement and conversion rates effectively.
@@ -825,13 +708,7 @@ Providing agents with AI-powered insights and contextual recommendations during 
 Analyzing customer feedback to assess agent performance, identify training needs, and improve service quality and customer satisfaction.
 AI-powered multilingual virtual assistants offering real-time, context-aware, and sentiment-sensitive support to deliver seamless customer service.
 Using AI to analyze debt recovery interactions, predict repayment likelihood, and optimize strategies for efficient and effective collections.
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
-Watch Video
+
 Lingo automatically ensures adherence to compliance standards and seamlessly aligns with new compliance or quality processes.
 On-premise deployment
 True vernacular solution
@@ -846,6 +723,4 @@ Automates call analysis for compliance and improved service.
 Better post-sales support and feedback analytics.
 Enhances customer support with real-time insights.
 Lingo provides AI-driven solutions for call analysis, feedback analytics, and real-time agent assistance, helping businesses optimize customer interactions.
-Success StoriesIntegrationsFAQPrivacy PolicyTerms of UseCertifications & Compliance
-Powered by
-© Copyright  Lingo 2025
+
