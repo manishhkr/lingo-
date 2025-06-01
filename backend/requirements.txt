@@ -1,2 +1,3 @@
 flask
-qdrant-client
+pinecone
+langchain-community
