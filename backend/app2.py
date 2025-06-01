@@ -243,13 +243,13 @@
 
 
 from flask import Flask, jsonify, request
-from qdrant_client import QdrantClient
-from qdrant_client.models import Filter, FieldCondition, Range, MatchValue
+from pinecone import Pinecone
 import os
 from urllib.parse import unquote
 import logging
-import requests
+from langchain_community.embeddings import HuggingFaceEmbeddings
 import numpy as np
+import time
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -257,142 +257,195 @@ logger = logging.getLogger(__name__)
 
 app = Flask(__name__)
 
-# Qdrant configuration
-QDRANT_URL = "https://5bd57eec-5901-44bc-bf2b-6ecec9484d55.us-west-1-0.aws.cloud.qdrant.io:6333"
-QDRANT_API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3MiOiJtIn0.WG6TTng7xH1MZe65n3v5IrYwApHU4e6wo8iJAWV914M"
+# Pinecone configuration
+PINECONE_API_KEY = "pcsk_4uTXQQ_2k4G6tD58zQCVmyL5gqQf21FdKVWTagJKzNANba3jyhaVKASR1WwsYHBktriedt"
+PINECONE_ENVIRONMENT = "us-east-1"
+DEFAULT_INDEX_NAME = "my-documents"
 
-# Local embedding model - no API keys needed
-EMBEDDING_MODEL = None
+# Initialize Pinecone client and embeddings
+pc = None
+embeddings = None
 
-# Initialize Qdrant client and embedding model
-try:
-    client = QdrantClient(
-        url=QDRANT_URL,
-        api_key=QDRANT_API_KEY,
-        timeout=30
-    )
-    logger.info("Successfully connected to Qdrant")
-    
-    # Initialize embedding model at startup
-    initialize_embedding_model()
-    
-except Exception as e:
-    logger.error(f"Failed to connect to Qdrant: {e}")
-    client = None
-
-def initialize_embedding_model():
-    """
-    Initialize the local embedding model (done once)
-    """
-    global EMBEDDING_MODEL
+def initialize_pinecone():
+    """Initialize Pinecone client"""
+    global pc
     try:
-        from sentence_transformers import SentenceTransformer
-        
-        # Use a lightweight, fast model
-        EMBEDDING_MODEL = SentenceTransformer('all-MiniLM-L6-v2')
-        logger.info("Local embedding model loaded successfully")
-        return True
-        
-    except ImportError:
-        logger.error("sentence-transformers not installed. Install with: pip install sentence-transformers")
-        return False
+        if pc is None:
+            logger.info("Initializing Pinecone client...")
+            pc = Pinecone(api_key=PINECONE_API_KEY)
+            logger.info("Successfully connected to Pinecone")
+        return pc
     except Exception as e:
-        logger.error(f"Failed to load embedding model: {e}")
-        return False
-
-def get_embedding_local(text):
-    """
-    Get embedding using local sentence-transformers model
-    """
-    global EMBEDDING_MODEL
-    
-    try:
-        # Initialize model if not already done
-        if EMBEDDING_MODEL is None:
-            if not initialize_embedding_model():
-                return None
-        
-        # Generate embedding
-        embedding = EMBEDDING_MODEL.encode(text)
-        return embedding.tolist()
-        
-    except Exception as e:
-        logger.error(f"Failed to get local embedding: {e}")
+        logger.error(f"Failed to connect to Pinecone: {e}")
         return None
 
+def initialize_embeddings():
+    """Initialize embeddings model"""
+    global embeddings
+    try:
+        if embeddings is None:
+            logger.info("Initializing embeddings model...")
+            embeddings = HuggingFaceEmbeddings(
+                model_name="sentence-transformers/all-MiniLM-L6-v2",
+                model_kwargs={'device': 'cpu'},
+                encode_kwargs={'normalize_embeddings': True}
+            )
+            logger.info("Successfully initialized embeddings model")
+        return embeddings
+    except Exception as e:
+        logger.error(f"Failed to initialize embeddings: {e}")
+        return None
+
+def generate_query_embedding(text):
+    """Generate embedding for query text"""
+    try:
+        emb = initialize_embeddings()
+        if not emb:
+            return None, "Embeddings model not initialized"
+        
+        if not text or not text.strip():
+            return None, "Empty query text"
+        
+        embedding = emb.embed_query(text.strip())
+        
+        if not isinstance(embedding, list) or len(embedding) != 384:
+            return None, f"Invalid embedding format or dimension: {len(embedding) if isinstance(embedding, list) else 'N/A'}"
+        
+        if not all(isinstance(x, (int, float)) and not (np.isnan(x) or np.isinf(x)) for x in embedding):
+            return None, "Embedding contains invalid values"
+        
+        return embedding, None
+        
+    except Exception as e:
+        return None, str(e)
+
 @app.route('/query/<path:query_text>', methods=['GET'])
-def query_qdrant(query_text):
+def query_pinecone(query_text):
     """
-    Query Qdrant for relevant chunks using vector search
+    Query Pinecone for relevant chunks based on the input text
     """
     try:
         # Decode URL-encoded query text
         decoded_query = unquote(query_text)
         logger.info(f"Processing query: {decoded_query}")
         
+        client = initialize_pinecone()
         if not client:
             return jsonify({
-                "error": "Qdrant client not initialized",
+                "error": "Pinecone client not initialized",
                 "status": "error"
             }), 500
         
         # Get query parameters
-        collection_name = request.args.get('collection', 'default_collection')
+        index_name = request.args.get('index', DEFAULT_INDEX_NAME)
         limit = int(request.args.get('limit', 10))
-        score_threshold = float(request.args.get('threshold', 0.7))  # Higher threshold for vector similarity
+        score_threshold = float(request.args.get('threshold', 0.0))
         
         try:
-            collections = client.get_collections()
-            logger.info(f"Available collections: {[c.name for c in collections.collections]}")
+            # Check if index exists
+            indexes = client.list_indexes()
+            available_indexes = [idx.name for idx in indexes]
+            logger.info(f"Available indexes: {available_indexes}")
             
-            if collection_name not in [c.name for c in collections.collections]:
-                # Try to use the first available collection
-                if collections.collections:
-                    collection_name = collections.collections[0].name
-                    logger.info(f"Using collection: {collection_name}")
+            if index_name not in available_indexes:
+                if available_indexes:
+                    index_name = available_indexes[0]
+                    logger.info(f"Using available index: {index_name}")
                 else:
                     return jsonify({
-                        "error": "No collections found in Qdrant",
+                        "error": "No indexes found in Pinecone",
                         "status": "error"
                     }), 404
             
-            # Get collection info
-            collection_info = client.get_collection(collection_name)
-            logger.info(f"Collection {collection_name} has {collection_info.points_count} points")
+            # Get the index
+            index = client.Index(index_name)
             
-            # Get query embedding using local model
-            query_embedding = get_embedding_local(decoded_query)
+            # Get index stats
+            stats = index.describe_index_stats()
+            logger.info(f"Index '{index_name}' stats: {stats}")
             
-            if query_embedding is None:
-                # Fallback to keyword search if embedding fails
-                logger.warning("Embedding generation failed, using keyword search")
-                return keyword_search(decoded_query, collection_name, limit, score_threshold)
+            if stats.total_vector_count == 0:
+                return jsonify({
+                    "query": decoded_query,
+                    "index": index_name,
+                    "results": [],
+                    "total_found": 0,
+                    "message": "Index is empty - no vectors to search",
+                    "status": "success"
+                })
+            
+            # Generate embedding for the query
+            query_embedding, error = generate_query_embedding(decoded_query)
+            if error:
+                return jsonify({
+                    "error": f"Failed to generate query embedding: {error}",
+                    "query": decoded_query,
+                    "status": "error"
+                }), 500
             
             # Perform vector search
-            search_result = client.search(
-                collection_name=collection_name,
-                query_vector=query_embedding,
-                limit=limit,
-                score_threshold=score_threshold,
-                with_payload=True,
-                with_vectors=False  # Set to True if you want to return vectors
-            )
+            search_results = []
             
-            # Format results
-            results = []
-            for scored_point in search_result:
-                results.append({
-                    "id": str(scored_point.id),
-                    "score": float(scored_point.score),
-                    "payload": scored_point.payload
-                })
+            try:
+                # Try high precision search first (with filter)
+                results_high = index.query(
+                    vector=query_embedding,
+                    top_k=limit,
+                    include_metadata=True,
+                    filter={"embedding_verified": True}
+                )
+                search_results.extend(results_high.matches)
+                logger.info(f"High precision search: {len(results_high.matches)} results")
+            except Exception as e:
+                logger.warning(f"High precision search failed: {e}")
+            
+            # If not enough results, try broader search
+            if len(search_results) < limit:
+                try:
+                    results_broad = index.query(
+                        vector=query_embedding,
+                        top_k=limit * 2,
+                        include_metadata=True
+                    )
+                    
+                    # Add results that aren't already included
+                    existing_ids = {r.id for r in search_results}
+                    for result in results_broad.matches:
+                        if result.id not in existing_ids and len(search_results) < limit:
+                            search_results.append(result)
+                    
+                    logger.info(f"Broad search added results: total now {len(search_results)}")
+                except Exception as e:
+                    logger.warning(f"Broad search failed: {e}")
+            
+            # Filter by score threshold and format results
+            relevant_chunks = []
+            for result in search_results:
+                if result.score >= score_threshold:
+                    metadata = result.metadata or {}
+                    relevant_chunks.append({
+                        "id": str(result.id),
+                        "score": float(result.score),
+                        "content": metadata.get("text", ""),
+                        "source_file": metadata.get("source_file", "unknown"),
+                        "chunk_index": metadata.get("chunk_index", 0),
+                        "chunk_size": metadata.get("chunk_size", 0),
+                        "payload": metadata
+                    })
+            
+            # Sort by relevance score
+            relevant_chunks.sort(key=lambda x: x['score'], reverse=True)
+            relevant_chunks = relevant_chunks[:limit]
             
             return jsonify({
                 "query": decoded_query,
-                "collection": collection_name,
-                "results": results,
-                "total_found": len(results),
-                "search_method": "vector_search",
+                "index": index_name,
+                "results": relevant_chunks,
+                "total_found": len(relevant_chunks),
+                "index_stats": {
+                    "total_vectors": stats.total_vector_count,
+                    "dimension": stats.dimension
+                },
                 "status": "success"
             })
             
@@ -411,242 +464,53 @@ def query_qdrant(query_text):
             "status": "error"
         }), 500
 
-def keyword_search(query_text, collection_name, limit, score_threshold):
+@app.route('/indexes', methods=['GET'])
+def list_indexes():
     """
-    Fallback keyword search method (your original implementation)
-    """
-    try:
-        # Scroll through points and do keyword matching
-        scroll_result = client.scroll(
-            collection_name=collection_name,
-            limit=limit * 5,  # Get more points to filter from
-            with_payload=True,
-            with_vectors=False
-        )
-        
-        # Filter results based on text similarity
-        relevant_chunks = []
-        query_words = query_text.lower().split()
-        
-        for point in scroll_result[0]:
-            payload = point.payload or {}
-            
-            # Check if any payload field contains query keywords
-            relevance_score = 0
-            matched_content = ""
-            
-            for key, value in payload.items():
-                if isinstance(value, str):
-                    value_lower = value.lower()
-                    matches = sum(1 for word in query_words if word in value_lower)
-                    if matches > 0:
-                        relevance_score += matches / len(query_words)
-                        if len(matched_content) < len(value):
-                            matched_content = value
-            
-            if relevance_score > score_threshold:
-                relevant_chunks.append({
-                    "id": str(point.id),
-                    "score": relevance_score,
-                    "payload": payload
-                })
-        
-        # Sort by relevance score
-        relevant_chunks.sort(key=lambda x: x['score'], reverse=True)
-        relevant_chunks = relevant_chunks[:limit]
-        
-        return jsonify({
-            "query": query_text,
-            "collection": collection_name,
-            "results": relevant_chunks,
-            "total_found": len(relevant_chunks),
-            "search_method": "keyword_search",
-            "status": "success"
-        })
-        
-    except Exception as e:
-        logger.error(f"Keyword search error: {e}")
-        return jsonify({
-            "error": f"Keyword search failed: {str(e)}",
-            "status": "error"
-        }), 500
-
-@app.route('/debug/<collection_name>', methods=['GET'])
-def debug_collection(collection_name):
-    """
-    Debug endpoint to understand your collection structure and search issues
+    List all available indexes in Pinecone
     """
     try:
+        client = initialize_pinecone()
         if not client:
             return jsonify({
-                "error": "Qdrant client not initialized",
+                "error": "Pinecone client not initialized",
                 "status": "error"
             }), 500
         
-        # Get collection info
-        collection_info = client.get_collection(collection_name)
+        indexes = client.list_indexes()
+        index_list = []
         
-        # Get sample points with vectors to understand structure
-        scroll_result = client.scroll(
-            collection_name=collection_name,
-            limit=3,
-            with_payload=True,
-            with_vectors=True
-        )
-        
-        debug_info = {
-            "collection_name": collection_name,
-            "total_points": collection_info.points_count,
-            "vector_config": {
-                "size": getattr(collection_info.config.params.vectors, 'size', 'Not configured'),
-                "distance": getattr(collection_info.config.params.vectors, 'distance', 'Not configured')
-            },
-            "embedding_model_loaded": EMBEDDING_MODEL is not None,
-            "sample_points": []
-        }
-        
-        for point in scroll_result[0]:
-            point_info = {
-                "id": str(point.id),
-                "has_vector": point.vector is not None,
-                "vector_length": len(point.vector) if point.vector else 0,
-                "payload_keys": list(point.payload.keys()) if point.payload else [],
-                "payload_sample": {k: str(v)[:100] + "..." if len(str(v)) > 100 else v 
-                                 for k, v in (point.payload or {}).items()}
-            }
-            debug_info["sample_points"].append(point_info)
-        
-        return jsonify({
-            "debug_info": debug_info,
-            "recommendations": get_debug_recommendations(debug_info),
-            "status": "success"
-        })
-        
-    except Exception as e:
-        logger.error(f"Debug error: {e}")
-        return jsonify({
-            "error": f"Debug failed: {str(e)}",
-            "status": "error"
-        }), 500
-
-def get_debug_recommendations(debug_info):
-    """
-    Generate recommendations based on debug info
-    """
-    recommendations = []
-    
-    if not debug_info["embedding_model_loaded"]:
-        recommendations.append("Install sentence-transformers: pip install sentence-transformers")
-    
-    if debug_info["total_points"] == 0:
-        recommendations.append("Your collection is empty. Add some data first.")
-    
-    if debug_info["vector_config"]["size"] == "Not configured":
-        recommendations.append("Your collection doesn't have vector configuration. You need to create vectors for your data.")
-    
-    for point in debug_info["sample_points"]:
-        if not point["has_vector"]:
-            recommendations.append("Your points don't have vectors. You need to add embeddings to your data.")
-            break
-    
-    if debug_info["embedding_model_loaded"] and debug_info["vector_config"]["size"] != "Not configured":
-        # Check if dimensions match
-        model_dim = 384  # all-MiniLM-L6-v2 produces 384-dimensional vectors
-        stored_dim = debug_info["vector_config"]["size"]
-        if stored_dim != model_dim:
-            recommendations.append(f"Dimension mismatch: Your stored vectors are {stored_dim}D but the model produces {model_dim}D vectors.")
-    
-    if not recommendations:
-        recommendations.append("Everything looks good! Try lowering the similarity threshold if you're not getting results.")
-    
-    return recommendations
-def test_data(collection_name):
-    """
-    Test endpoint to see what data is actually in your collection
-    """
-    try:
-        if not client:
-            return jsonify({
-                "error": "Qdrant client not initialized",
-                "status": "error"
-            }), 500
-        
-        # Get a few sample points to see the structure
-        scroll_result = client.scroll(
-            collection_name=collection_name,
-            limit=5,
-            with_payload=True,
-            with_vectors=False
-        )
-        
-        sample_points = []
-        for point in scroll_result[0]:
-            sample_points.append({
-                "id": str(point.id),
-                "payload_keys": list(point.payload.keys()) if point.payload else [],
-                "payload": point.payload
-            })
-        
-        collection_info = client.get_collection(collection_name)
-        
-        return jsonify({
-            "collection": collection_name,
-            "total_points": collection_info.points_count,
-            "sample_points": sample_points,
-            "status": "success"
-        })
-        
-    except Exception as e:
-        logger.error(f"Test data error: {e}")
-        return jsonify({
-            "error": f"Failed to get test data: {str(e)}",
-            "status": "error"
-        }), 500
-
-# Keep your existing endpoints
-@app.route('/collections', methods=['GET'])
-def list_collections():
-    """
-    List all available collections in Qdrant
-    """
-    try:
-        if not client:
-            return jsonify({
-                "error": "Qdrant client not initialized",
-                "status": "error"
-            }), 500
-        
-        collections = client.get_collections()
-        collection_list = []
-        
-        for collection in collections.collections:
+        for index_info in indexes:
             try:
-                info = client.get_collection(collection.name)
-                collection_list.append({
-                    "name": collection.name,
-                    "points_count": info.points_count,
-                    "status": info.status,
-                    "vector_size": info.config.params.vectors.size if hasattr(info.config.params, 'vectors') else "unknown"
+                index = client.Index(index_info.name)
+                stats = index.describe_index_stats()
+                index_list.append({
+                    "name": index_info.name,
+                    "dimension": stats.dimension,
+                    "metric": index_info.metric,
+                    "points_count": stats.total_vector_count,
+                    "status": "ready" if stats.total_vector_count > 0 else "empty"
                 })
             except Exception as e:
-                logger.warning(f"Could not get info for collection {collection.name}: {e}")
-                collection_list.append({
-                    "name": collection.name,
+                logger.warning(f"Could not get stats for index {index_info.name}: {e}")
+                index_list.append({
+                    "name": index_info.name,
+                    "dimension": getattr(index_info, 'dimension', 'unknown'),
+                    "metric": getattr(index_info, 'metric', 'unknown'),
                     "points_count": "unknown",
-                    "status": "unknown",
-                    "vector_size": "unknown"
+                    "status": "unknown"
                 })
         
         return jsonify({
-            "collections": collection_list,
-            "total": len(collection_list),
+            "indexes": index_list,
+            "total": len(index_list),
             "status": "success"
         })
         
     except Exception as e:
-        logger.error(f"Failed to list collections: {e}")
+        logger.error(f"Failed to list indexes: {e}")
         return jsonify({
-            "error": f"Failed to list collections: {str(e)}",
+            "error": f"Failed to list indexes: {str(e)}",
             "status": "error"
         }), 500
 
@@ -656,18 +520,35 @@ def health_check():
     Health check endpoint
     """
     try:
+        client = initialize_pinecone()
+        emb = initialize_embeddings()
+        
         if not client:
             return jsonify({
                 "status": "unhealthy",
-                "qdrant": "disconnected"
+                "pinecone": "disconnected",
+                "embeddings": "ready" if emb else "not_ready"
             }), 500
         
-        collections = client.get_collections()
+        # Try to get indexes as a health check
+        indexes = client.list_indexes()
+        
+        # Test embedding generation
+        embedding_test = None
+        if emb:
+            try:
+                test_embedding, error = generate_query_embedding("test query")
+                embedding_test = "working" if not error else f"error: {error}"
+            except Exception as e:
+                embedding_test = f"error: {str(e)}"
         
         return jsonify({
             "status": "healthy",
-            "qdrant": "connected",
-            "collections_count": len(collections.collections)
+            "pinecone": "connected",
+            "embeddings": "ready" if emb else "not_ready",
+            "embedding_test": embedding_test,
+            "indexes_count": len(indexes),
+            "available_indexes": [idx.name for idx in indexes]
         })
         
     except Exception as e:
@@ -676,32 +557,135 @@ def health_check():
             "error": str(e)
         }), 500
 
+@app.route('/debug/<path:query_text>', methods=['GET'])
+def debug_query(query_text):
+    """
+    Debug endpoint to test query processing and embeddings
+    """
+    try:
+        decoded_query = unquote(query_text)
+        client = initialize_pinecone()
+        emb = initialize_embeddings()
+        
+        if not client:
+            return jsonify({
+                "error": "Pinecone client not initialized",
+                "status": "error"
+            }), 500
+        
+        index_name = request.args.get('index', DEFAULT_INDEX_NAME)
+        
+        # Get index info
+        try:
+            index = client.Index(index_name)
+            stats = index.describe_index_stats()
+        except Exception as e:
+            return jsonify({
+                "error": f"Could not access index '{index_name}': {str(e)}",
+                "available_indexes": [idx.name for idx in client.list_indexes()]
+            }), 500
+        
+        # Test embedding generation
+        query_embedding, embedding_error = generate_query_embedding(decoded_query)
+        
+        # Get sample results if embedding works
+        sample_results = []
+        if query_embedding and not embedding_error:
+            try:
+                sample_results = index.query(
+                    vector=query_embedding,
+                    top_k=3,
+                    include_metadata=True
+                ).matches
+            except Exception as e:
+                logger.warning(f"Sample query failed: {e}")
+        
+        formatted_results = [{
+            "id": r.id,
+            "score": r.score,
+            "metadata": r.metadata
+        } for r in sample_results]
+
+        return jsonify({
+            "query": decoded_query,
+            "embedding_error": embedding_error,
+            "embedding_length": len(query_embedding) if query_embedding else 0,
+            "index_stats": {
+                "total_vectors": stats.total_vector_count,
+                "dimension": stats.dimension
+            },
+            "sample_results": formatted_results,
+            "status": "success"
+        })
+    
+    except Exception as e:
+        logger.error(f"Debug endpoint failed: {e}")
+        return jsonify({
+            "error": f"Debug failed: {str(e)}",
+            "status": "error"
+        }), 500
+
+
 @app.route('/', methods=['GET'])
 def root():
     """
     Root endpoint with API documentation
     """
+    client = initialize_pinecone()
+    emb = initialize_embeddings()
+    
+    # Get system status
+    system_status = {
+        "pinecone_connected": client is not None,
+        "embeddings_ready": emb is not None,
+        "ready_for_queries": client is not None and emb is not None
+    }
+    
+    # Get available indexes
+    available_indexes = []
+    if client:
+        try:
+            indexes = client.list_indexes()
+            available_indexes = [idx.name for idx in indexes]
+        except Exception as e:
+            logger.warning(f"Could not list indexes: {e}")
+    
     return jsonify({
-        "message": "Qdrant Query Service with Vector Search",
+        "message": "Pinecone Query Service",
+        "description": "Flask API for querying Pinecone vector database with embedding support",
+        "version": "1.0.0",
+        "system_status": system_status,
+        "available_indexes": available_indexes,
         "endpoints": {
             "/query/<query_text>": "Search for relevant chunks using vector similarity",
-            "/collections": "List available collections",
-            "/test_data/<collection_name>": "Get sample data from a collection",
-            "/health": "Health check"
+            "/indexes": "List available Pinecone indexes",
+            "/health": "Health check for all system components",
+            "/debug/<query_text>": "Debug query processing and embeddings"
         },
-        "example": "GET /query/what%20is%20lingo?collection=your_collection&limit=5&threshold=0.7",
-        "parameters": {
-            "collection": "Collection name (optional)",
-            "limit": "Maximum results to return (default: 10)",
-            "threshold": "Minimum similarity score (default: 0.7 for vector search, 0.0 for keyword search)"
-        }
+        "example_usage": {
+            "basic_query": "GET /query/what%20is%20machine%20learning?index=my-documents&limit=5&threshold=0.7",
+            "with_parameters": {
+                "index": "Specify which Pinecone index to search (default: my-documents)",
+                "limit": "Maximum results to return (default: 10)",
+                "threshold": "Minimum similarity score (default: 0.0)"
+            }
+        },
+        "features": [
+            "Vector similarity search using embeddings",
+            "Automatic embedding generation for queries",
+            "Multi-level search (filtered + broad)",
+            "Comprehensive error handling",
+            "Debug capabilities for troubleshooting",
+            "Health monitoring for all components"
+        ]
     })
 
 @app.errorhandler(404)
 def not_found(error):
     return jsonify({
         "error": "Endpoint not found",
-        "status": "error"
+        "status": "error",
+        "available_endpoints": ["/", "/query/<text>", "/indexes", "/health", "/debug/<text>"]
     }), 404
 
 @app.errorhandler(500)
@@ -712,4 +696,23 @@ def internal_error(error):
     }), 500
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    print("🚀 Starting Pinecone Query Service")
+    print("=" * 50)
+    
+    # Initialize components on startup
+    print("🔗 Initializing Pinecone client...")
+    pc_client = initialize_pinecone()
+    
+    print("🧠 Initializing embeddings model...")
+    emb_model = initialize_embeddings()
+    
+    if pc_client and emb_model:
+        print("✅ All components initialized successfully!")
+        print("🎯 Ready to serve vector search queries!")
+    else:
+        print("⚠️  Some components failed to initialize")
+        print("💡 Check logs for specific errors")
+    
+    print("=" * 50)
+    
+    app.run(debug=False,use_reloader=False, host='0.0.0.0', port=5001)
